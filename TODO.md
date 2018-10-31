@@ -22,3 +22,4 @@
 - [ ] mobile 版本
 - [ ] https://github.com/ecmadao/light-ui
 - [ ] Router
+- [ ] 处理 FontIcon

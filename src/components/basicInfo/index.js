@@ -71,7 +71,7 @@ export class BasicInfo extends PureComponent {
     const { userInfo } = this.props
 
     return (
-      <Card>
+      <Card title="基本信息" icon="address-card">
         <Top userInfo={userInfo} />
         <Bottom userInfo={userInfo} />
       </Card>
