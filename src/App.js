@@ -1,24 +1,22 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
+import get from 'lodash/get'
 import './App.css'
-import { Card } from 'components/card'
+import { BasicInfo } from 'pages/basicInfo'
 
 class App extends Component {
+  state = { userInfo: {} }
+
   componentDidMount() {
     fetch('https://hacknical.com/github/tangweikun/info')
       .then(res => res.json())
-      .then(
-        result => {
-          console.log(result)
-        },
-        error => {},
-      )
+      .then(res => this.setState({ userInfo: get(res, 'result') }), error => {})
   }
-
   render() {
+    const { userInfo } = this.state
+
     return (
       <div className="App">
-        <Card>777</Card>
+        <BasicInfo userInfo={userInfo} />
       </div>
     )
   }
