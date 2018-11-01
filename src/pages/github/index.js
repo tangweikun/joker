@@ -4,7 +4,13 @@ import { BasicInfo } from 'components/basicInfo'
 import { RepositoriesInfo } from 'components/repositoriesInfo'
 
 export default class Github extends Component {
-  state = { userInfo: {} }
+  state = {
+    userInfo: {},
+    repositories: [],
+    hotmap: [],
+    commits: [],
+    formatCommits: [],
+  }
 
   componentDidMount() {
     fetch('https://hacknical.com/github/tangweikun/info')
@@ -41,12 +47,20 @@ export default class Github extends Component {
   }
 
   render() {
-    const { userInfo } = this.state
-
+    const {
+      userInfo,
+      repositories,
+      hotmap,
+      commits,
+      formatCommits,
+    } = this.state
+    console.log(repositories, '00')
     return (
       <React.Fragment>
         <BasicInfo userInfo={userInfo} />
-        <RepositoriesInfo />
+        {repositories.length > 0 && (
+          <RepositoriesInfo repositories={repositories} />
+        )}
       </React.Fragment>
     )
   }
