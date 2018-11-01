@@ -1953,6 +1953,11 @@ buffer@^4.3.0:
     ieee754 "^1.1.4"
     isarray "^1.0.0"
 
+building-block@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/building-block/-/building-block-1.0.0.tgz#f1cf3c4ed0b1343452ade68428d2be167bce0870"
+  integrity sha512-7mmrSTF7B163kwPOq/rH9wDCj2lWk7FvLx7L26AwdXpdfWNHMIu/TODy7QRELrp+05ABH7WUocuybfkNgzaRRQ==
+
 builtin-modules@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
