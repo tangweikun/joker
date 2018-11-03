@@ -1,4 +1,5 @@
 import React from 'react'
+import { Tooltip } from 'building-block'
 import styled, { css } from 'styled-components'
 import { Card } from 'components/card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -88,6 +89,11 @@ export class RepositoriesInfo extends React.PureComponent {
               )}
             </MainText>
             <SubText>最受欢迎的仓库</SubText>
+            <Info>
+              <Tooltip title={get(mostPopularRepository, 'name')}>
+                <FontAwesomeIcon icon="info-circle" color="#C7C9CC" />
+              </Tooltip>
+            </Info>
           </InfoCard>
           <InfoCard isLastChild>
             <MainText>
@@ -102,12 +108,23 @@ export class RepositoriesInfo extends React.PureComponent {
               ).format('YYYY-MM-DD')}
             </MainText>
             <SubText>持续时间最长的仓库</SubText>
+            <Info>
+              <Tooltip title={get(longestRunningRepository, 'name')}>
+                <FontAwesomeIcon icon="info-circle" color="#C7C9CC" />
+              </Tooltip>
+            </Info>
           </InfoCard>
         </Group>
       </Card>
     )
   }
 }
+
+const Info = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 0;
+`
 
 const MainText = styled.div`
   font-size: 1.6em;
@@ -126,10 +143,11 @@ const SubText = styled.div`
 `
 
 const InfoCard = styled.div`
+  position: relative;
   font-size: 12px;
   flex: 1;
-  padding: 15px 10px;
-  margin: 10px 5px;
+  padding: 15px;
+  margin: 10px 0;
   display: inline-flex;
   flex-direction: column;
   user-select: none;

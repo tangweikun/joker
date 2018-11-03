@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import get from 'lodash/get'
 import styled from 'styled-components'
-import { Foo } from 'building-block'
 import { Card } from 'components/card'
 import styles from './index.module.css'
 
@@ -14,7 +13,6 @@ const Top = ({ userInfo }) => (
       <a href="">{get(userInfo, 'name')}</a>
       <div>
         <span>加入时间:&nbsp;&nbsp;</span>
-        <Foo />
         <span>{get(userInfo, 'created_at')}</span>
       </div>
       <div className={styles['bio']}>{get(userInfo, 'bio')}</div>

@@ -13,6 +13,31 @@ export default class Github extends Component {
   }
 
   componentDidMount() {
+    fetch('https://profile-summary-for-github.com/api/user/tangweikun')
+      .then(res => res.json())
+      .then(
+        res =>
+          this.setState({
+            langCommitCount: get(res, 'langCommitCount', {}),
+            repoStarCountDescriptions: get(
+              res,
+              'repoStarCountDescriptions',
+              {},
+            ),
+            repoStarCount: get(res, 'repoStarCount', {}),
+            langRepoCount: get(res, 'langRepoCount', {}),
+            langStarCount: get(res, 'langStarCount', {}),
+            quarterCommitCount: get(res, 'quarterCommitCount', {}),
+            repoCommitCount: get(res, 'repoCommitCount', {}),
+            repoCommitCountDescriptions: get(
+              res,
+              'repoCommitCountDescriptions',
+              {},
+            ),
+          }),
+        error => {},
+      )
+
     fetch('https://hacknical.com/github/tangweikun/info')
       .then(res => res.json())
       .then(
@@ -53,6 +78,7 @@ export default class Github extends Component {
       hotmap,
       commits,
       formatCommits,
+      langCommitCount,
     } = this.state
     console.log(repositories, '00')
     return (
