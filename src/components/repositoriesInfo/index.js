@@ -5,7 +5,17 @@ import { Card } from 'components/card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import get from 'lodash/get'
 import moment from 'moment'
-import { PieChart, Pie, Legend, Tooltip as ChartTooltip } from 'recharts'
+import {
+  PieChart,
+  Pie,
+  Legend,
+  Tooltip as ChartTooltip,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+} from 'recharts'
 import { PROFILE_SUMMARY_FOR_GITHUB } from '../../fake-data'
 
 const fills = ['#54CA76', '#F5C452', '#F2637F', '#9261F3', '#31A4E6', '#55CBCB']
@@ -54,9 +64,17 @@ export class RepositoriesInfo extends React.PureComponent {
   }
 
   render() {
-    const { langRepoCount, repoStarCount } = PROFILE_SUMMARY_FOR_GITHUB
+    const {
+      langRepoCount,
+      repoStarCount,
+      quarterCommitCount,
+    } = PROFILE_SUMMARY_FOR_GITHUB
     const langRepoCountData = this.formatChartData(langRepoCount)
     const repoStarCountData = this.formatChartData(repoStarCount)
+    const quarterCommitCountData = Object.keys(quarterCommitCount).map(x => ({
+      name: x,
+      commits: quarterCommitCount[x],
+    }))
 
     const {
       mostPopularRepository,
@@ -133,6 +151,29 @@ export class RepositoriesInfo extends React.PureComponent {
 
         <Group>
           <ChartWrapper>
+            <ChartTitle>Commits per Quarter</ChartTitle>
+            <AreaChart
+              width={740}
+              height={260}
+              data={quarterCommitCountData}
+              margin={{ top: 0, right: 30, left: 0, bottom: 20 }}
+            >
+              <CartesianGrid strokeDasharray="5 5" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <ChartTooltip />
+              <Area
+                type="monotone"
+                dataKey="commits"
+                stroke="#239A3B"
+                fill="#7BC86F"
+              />
+            </AreaChart>
+          </ChartWrapper>
+        </Group>
+
+        <Group>
+          <ChartWrapper>
             <ChartTitle>Repos per Language</ChartTitle>
             <PieChart width={360} height={220}>
               <Pie
@@ -188,13 +229,14 @@ export class RepositoriesInfo extends React.PureComponent {
 
 const ChartTitle = styled.div`
   text-align: left;
-  font-size: 30px;
+  font-size: 22px;
   font-weight: bold;
   margin: 16px 0;
 `
 
 const ChartWrapper = styled.div`
   flex: 1;
+  padding-left: 16px;
 `
 
 const Info = styled.div`
