@@ -5,9 +5,20 @@ import { Card } from 'components/card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import get from 'lodash/get'
 import moment from 'moment'
+import { PieChart, Pie, Legend, Tooltip as ChartTooltip } from 'recharts'
+import { PROFILE_SUMMARY_FOR_GITHUB } from '../../fake-data'
+
+const fills = ['#54CA76', '#F5C452', '#F2637F', '#9261F3', '#31A4E6', '#55CBCB']
 
 export class RepositoriesInfo extends React.PureComponent {
   state = {}
+
+  formatChartData = data =>
+    Object.keys(data).map((key, index) => ({
+      name: key,
+      value: data[key],
+      fill: fills[index % 6],
+    }))
 
   componentDidMount() {
     const { repositories } = this.props
@@ -43,6 +54,10 @@ export class RepositoriesInfo extends React.PureComponent {
   }
 
   render() {
+    const { langRepoCount, repoStarCount } = PROFILE_SUMMARY_FOR_GITHUB
+    const langRepoCountData = this.formatChartData(langRepoCount)
+    const repoStarCountData = this.formatChartData(repoStarCount)
+
     const {
       mostPopularRepository,
       longestRunningRepository,
@@ -50,7 +65,7 @@ export class RepositoriesInfo extends React.PureComponent {
       totalForks,
       totalRepositories,
     } = this.state
-    console.log(this.state)
+
     return (
       <Card title="仓库概览" icon="chart-bar">
         <Group>
@@ -115,10 +130,72 @@ export class RepositoriesInfo extends React.PureComponent {
             </Info>
           </InfoCard>
         </Group>
+
+        <Group>
+          <ChartWrapper>
+            <ChartTitle>Repos per Language</ChartTitle>
+            <PieChart width={360} height={220}>
+              <Pie
+                data={langRepoCountData}
+                cx={200}
+                cy={80}
+                innerRadius={40}
+                outerRadius={80}
+                fill="#82ca9d"
+              />
+              <ChartTooltip />
+              <Legend
+                width={120}
+                wrapperStyle={{
+                  whiteSpace: 'nowrap',
+                  overflow: 'auto',
+                }}
+                layout="vertical"
+                verticalAlign="top"
+                align="left"
+              />
+            </PieChart>
+          </ChartWrapper>
+          <ChartWrapper>
+            <ChartTitle>Stars per Repo (top 10)</ChartTitle>
+            <PieChart width={360} height={220}>
+              <Pie
+                data={repoStarCountData}
+                cx={240}
+                cy={80}
+                innerRadius={40}
+                outerRadius={80}
+                fill="#82ca9d"
+              />
+              <ChartTooltip />
+              <Legend
+                width={120}
+                wrapperStyle={{
+                  whiteSpace: 'nowrap',
+                  overflow: 'auto',
+                }}
+                layout="vertical"
+                verticalAlign="top"
+                align="left"
+              />
+            </PieChart>
+          </ChartWrapper>
+        </Group>
       </Card>
     )
   }
 }
+
+const ChartTitle = styled.div`
+  text-align: left;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 16px 0;
+`
+
+const ChartWrapper = styled.div`
+  flex: 1;
+`
 
 const Info = styled.div`
   position: absolute;

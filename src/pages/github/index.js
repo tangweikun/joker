@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import get from 'lodash/get'
 import { BasicInfo } from 'components/basicInfo'
 import { RepositoriesInfo } from 'components/repositoriesInfo'
+import { PROFILE_SUMMARY_FOR_GITHUB } from '../../fake-data'
 
 export default class Github extends Component {
   state = {
@@ -13,31 +14,6 @@ export default class Github extends Component {
   }
 
   componentDidMount() {
-    fetch('https://profile-summary-for-github.com/api/user/tangweikun')
-      .then(res => res.json())
-      .then(
-        res =>
-          this.setState({
-            langCommitCount: get(res, 'langCommitCount', {}),
-            repoStarCountDescriptions: get(
-              res,
-              'repoStarCountDescriptions',
-              {},
-            ),
-            repoStarCount: get(res, 'repoStarCount', {}),
-            langRepoCount: get(res, 'langRepoCount', {}),
-            langStarCount: get(res, 'langStarCount', {}),
-            quarterCommitCount: get(res, 'quarterCommitCount', {}),
-            repoCommitCount: get(res, 'repoCommitCount', {}),
-            repoCommitCountDescriptions: get(
-              res,
-              'repoCommitCountDescriptions',
-              {},
-            ),
-          }),
-        error => {},
-      )
-
     fetch('https://hacknical.com/github/tangweikun/info')
       .then(res => res.json())
       .then(
