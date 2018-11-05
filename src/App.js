@@ -9,6 +9,7 @@ import {
   faBox,
   faClock,
   faInfoCircle,
+  faAward,
 } from '@fortawesome/free-solid-svg-icons'
 import './App.css'
 import Github from 'pages/github'
@@ -21,6 +22,7 @@ library.add(faBoxes)
 library.add(faBox)
 library.add(faClock)
 library.add(faInfoCircle)
+library.add(faAward)
 
 class App extends Component {
   render() {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import get from 'lodash/get'
 import { BasicInfo } from 'components/basicInfo'
 import { RepositoriesInfo } from 'components/repositoriesInfo'
-import { PROFILE_SUMMARY_FOR_GITHUB } from '../../fake-data'
+import { Contribution } from 'components/contribution'
 
 export default class Github extends Component {
   state = {
@@ -59,6 +59,7 @@ export default class Github extends Component {
     console.log(repositories, '00')
     return (
       <React.Fragment>
+        <Contribution />
         <BasicInfo userInfo={userInfo} />
         {repositories.length > 0 && (
           <RepositoriesInfo repositories={repositories} />

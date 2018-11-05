@@ -156,7 +156,7 @@ export class RepositoriesInfo extends React.PureComponent {
               width={740}
               height={260}
               data={quarterCommitCountData}
-              margin={{ top: 0, right: 30, left: 0, bottom: 20 }}
+              margin={{ top: 10, right: 50, left: 0, bottom: 20 }}
             >
               <CartesianGrid strokeDasharray="5 5" />
               <XAxis dataKey="name" />
