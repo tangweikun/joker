@@ -59,11 +59,11 @@ export default class Github extends Component {
     console.log(repositories, '00')
     return (
       <React.Fragment>
-        <Contribution />
         <BasicInfo userInfo={userInfo} />
         {repositories.length > 0 && (
           <RepositoriesInfo repositories={repositories} />
         )}
+        <Contribution />
       </React.Fragment>
     )
   }

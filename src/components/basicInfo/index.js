@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import get from 'lodash/get'
+import moment from 'moment'
 import styled from 'styled-components'
 import { Card } from 'components/card'
 import styles from './index.module.css'
@@ -13,7 +14,7 @@ const Top = ({ userInfo }) => (
       <a href="">{get(userInfo, 'name')}</a>
       <div>
         <span>加入时间:&nbsp;&nbsp;</span>
-        <span>{get(userInfo, 'created_at')}</span>
+        <span>{moment(get(userInfo, 'created_at')).format('YYYY-MM-DD')}</span>
       </div>
       <div className={styles['bio']}>{get(userInfo, 'bio')}</div>
     </div>
