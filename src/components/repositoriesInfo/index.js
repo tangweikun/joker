@@ -157,6 +157,7 @@ export class RepositoriesInfo extends React.PureComponent {
             <PieChart width={360} height={220}>
               <Pie
                 data={langRepoCountData}
+                dataKey="value"
                 cx={200}
                 cy={80}
                 innerRadius={40}
@@ -181,6 +182,7 @@ export class RepositoriesInfo extends React.PureComponent {
             <PieChart width={360} height={220}>
               <Pie
                 data={repoStarCountData}
+                dataKey="value"
                 cx={240}
                 cy={80}
                 innerRadius={40}
