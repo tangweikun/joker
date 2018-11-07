@@ -1,59 +1,41 @@
 import React from 'react'
 import styled from 'styled-components'
 import copy from 'copy-to-clipboard'
-
-const colors = Array.from(
-  new Set([
-    '#DB7094',
-    '#9134DC',
-    '#FF7381',
-    '#3FC4FE',
-    '#FF9D45',
-    '#8DD843',
-    '#FB584A',
-    '#FFE55F',
-    '#00E676',
-    '#00A9F0',
-    '#80DEEA',
-    '#F74D5F',
-    '#77E756',
-    '#FFCE49',
-    '#F94E43',
-    '#FA9A3F',
-    '#FF7381',
-    '#38C1F1',
-    '#8DC449',
-    '#80DEEA',
-    '#FFB64D',
-    '#536DFE',
-    '#C5E763',
-    '#EF5351',
-    '#00E676',
-    '#38C1F1',
-    '#63B5F5',
-    '#FF5A79',
-    '#CEDAE6',
-    '#77E756',
-    '#00CBE8',
-    '#00E676',
-    '#FFC303',
-    '#E7F4FF',
-    '#FFCE49',
-    '#A78674',
-    '#57D0D8',
-    '#FCD0AD',
-    '#C5E763',
-    '#7F39FB',
-  ]),
-)
+import { colors } from 'fake-data/colors'
+import { sleep } from 'utils/sleep'
 
 export default class Rainbow extends React.Component {
+  constructor(props) {
+    super(props)
+    this.queue = []
+    this.count = 0
+  }
+
   render() {
     return (
       <Wrapper>
-        {colors.map(x => (
-          <BlockWrapper key={x} bg={x}>
-            <Block onClick={() => copy(x)}>{x}</Block>
+        {this.queue.map(x => (
+          <Notification
+            key={x.key}
+            text={`${x.color} copied to the clipboard 😁`}
+            bg={x.color}
+          />
+        ))}
+
+        {colors.map(color => (
+          <BlockWrapper bg={color} key={color}>
+            <Block
+              onClick={async () => {
+                copy(color)
+                this.queue.unshift({ key: this.count++, color })
+                this.forceUpdate()
+                await sleep(2000)
+                this.queue.pop()
+                this.forceUpdate()
+              }}
+            >
+              {color}
+            </Block>
           </BlockWrapper>
         ))}
       </Wrapper>
@@ -61,10 +43,16 @@ export default class Rainbow extends React.Component {
   }
 }
 
+class Notification extends React.Component {
+  render() {
+    return <Message bg={this.props.bg}>{this.props.text}</Message>
+  }
+}
+
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  padding: 10px;
+  padding: 60px;
   background: #f5f5f5;
 `
 
@@ -85,4 +73,23 @@ const BlockWrapper = styled.div`
   height: 240px;
   border-radius: 4px;
   margin: 20px;
+`
+
+const Message = styled.div`
+  position: fixed;
+  left: 30px;
+  top: 30px;
+  width: 300px;
+  height: 60px;
+  line-height: 60px;
+  background: ${props => props.bg || '#ff5a79'};
+  color: #fff;
+  z-index: 1000;
+  user-select: none;
+  border-radius: 4px;
+  cursor: default;
+  font-size: 16px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
 `
