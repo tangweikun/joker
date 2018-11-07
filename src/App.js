@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { library } from '@fortawesome/fontawesome-svg-core'
+import styled from 'styled-components'
 import {
   faChartBar,
   faAddressCard,
@@ -11,7 +12,7 @@ import {
   faInfoCircle,
   faAward,
 } from '@fortawesome/free-solid-svg-icons'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 import './App.css'
 import Github from 'routes/github'
@@ -37,6 +38,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
+          <Nav>
+            <Link to="github">github</Link>
+            <Link to="rainbow">rainbow</Link>
+          </Nav>
           <Route path="/" exact component={Rainbow} />
           <Route path="/about/" component={About} />
           <Route path="/rainbow" component={Rainbow} />
@@ -46,5 +51,15 @@ class App extends Component {
     )
   }
 }
+
+const Nav = styled.div`
+  height: 40px;
+  line-height: 40px;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  background: #ce7693;
+  padding: 0 20px;
+`
 
 export default App

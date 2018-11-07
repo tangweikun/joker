@@ -41,12 +41,6 @@ export default class Rainbow extends React.Component {
   }
 }
 
-class Notification extends React.Component {
-  render() {
-    return <Message bg={this.props.bg}>{this.props.text}</Message>
-  }
-}
-
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;

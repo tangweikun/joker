@@ -73,4 +73,5 @@ export default class Github extends Component {
 const Wrapper = styled.div`
   width: 750px;
   margin: 0 auto;
+  padding-top: 40px;
 `
