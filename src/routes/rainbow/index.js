@@ -15,11 +15,9 @@ export default class Rainbow extends React.Component {
     return (
       <Wrapper>
         {this.queue.map(x => (
-          <Notification
-            key={x.key}
-            text={`${x.color} copied to the clipboard 😁`}
-            bg={x.color}
-          />
+          <Message key={x.key} bg={x.color}>{`${
+            x.color
+          } copied to the clipboard 😁`}</Message>
         ))}
 
         {colors.map(color => (
@@ -58,6 +56,7 @@ const Wrapper = styled.div`
 
 const Block = styled.div`
   cursor: pointer;
+  padding: 20px;
 `
 
 const BlockWrapper = styled.div`
@@ -73,13 +72,20 @@ const BlockWrapper = styled.div`
   height: 240px;
   border-radius: 4px;
   margin: 20px;
+  box-shadow: 0 1px 2px 0 rgba(168, 182, 191, 0.6);
+  transition: all 0.25s ease-out;
+
+  &:hover {
+    box-shadow: 0 10px 20px 0 rgba(168, 182, 191, 0.6);
+    transform: translateY(-1px);
+  }
 `
 
 const Message = styled.div`
   position: fixed;
   left: 30px;
   top: 30px;
-  width: 300px;
+  width: 320px;
   height: 60px;
   line-height: 60px;
   background: ${props => props.bg || '#ff5a79'};
@@ -92,4 +98,5 @@ const Message = styled.div`
   text-align: center;
   display: inline-block;
   vertical-align: middle;
+  box-shadow: 0 25px 10px -15px rgba(0, 0, 0, 0.05);
 `

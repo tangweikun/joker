@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import get from 'lodash/get'
+import styled from 'styled-components'
 import { BasicInfo } from 'components/basicInfo'
 import { RepositoriesInfo } from 'components/repositoriesInfo'
 import { Contribution } from 'components/contribution'
@@ -56,15 +57,20 @@ export default class Github extends Component {
       formatCommits,
       langCommitCount,
     } = this.state
-    console.log(repositories, '00')
+
     return (
-      <React.Fragment>
+      <Wrapper>
         <BasicInfo userInfo={userInfo} />
         {repositories.length > 0 && (
           <RepositoriesInfo repositories={repositories} />
         )}
         <Contribution />
-      </React.Fragment>
+      </Wrapper>
     )
   }
 }
+
+const Wrapper = styled.div`
+  width: 750px;
+  margin: 0 auto;
+`

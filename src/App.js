@@ -37,7 +37,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Route path="/" exact component={Github} />
+          <Route path="/" exact component={Rainbow} />
           <Route path="/about/" component={About} />
           <Route path="/rainbow" component={Rainbow} />
           <Route path="/github" component={Github} />
