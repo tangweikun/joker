@@ -11,10 +11,10 @@ import {
   faInfoCircle,
   faAward,
 } from '@fortawesome/free-solid-svg-icons'
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 import './App.css'
-import Github from 'pages/github'
+import Github from 'routes/github'
 
 library.add(faChartBar)
 library.add(faStar)
