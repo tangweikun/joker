@@ -11,6 +11,8 @@ import {
   faInfoCircle,
   faAward,
 } from '@fortawesome/free-solid-svg-icons'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
+
 import './App.css'
 import Github from 'pages/github'
 
@@ -24,12 +26,22 @@ library.add(faClock)
 library.add(faInfoCircle)
 library.add(faAward)
 
+const Index = () => <h2>Home</h2>
+const About = () => <h2>About</h2>
+const Users = () => <h2>Users</h2>
+
+// TODO: 合理配置路由
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Github />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Route path="/" exact component={Index} />
+          <Route path="/about/" component={About} />
+          <Route path="/users/" component={Users} />
+          <Route path="/github" component={Github} />
+        </div>
+      </BrowserRouter>
     )
   }
 }
