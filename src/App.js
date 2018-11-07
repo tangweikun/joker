@@ -15,6 +15,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 
 import './App.css'
 import Github from 'routes/github'
+import Rainbow from 'routes/rainbow'
 
 library.add(faChartBar)
 library.add(faStar)
@@ -36,9 +37,9 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Route path="/" exact component={Index} />
+          <Route path="/" exact component={Github} />
           <Route path="/about/" component={About} />
-          <Route path="/users/" component={Users} />
+          <Route path="/rainbow" component={Rainbow} />
           <Route path="/github" component={Github} />
         </div>
       </BrowserRouter>
