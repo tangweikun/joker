@@ -2,33 +2,28 @@ import React from 'react'
 import styled from 'styled-components'
 import get from 'lodash/get'
 import { Link } from 'react-router-dom'
-import { POSITIONING, LAYOUT } from 'fake-data/css-properties'
+import { CSS_PROPERTIES } from 'fake-data/css-properties/index'
 import { COLORS } from 'fake-data/colors'
 
-const CSS_PROPERTIES = {
-  positioning: POSITIONING,
-  layout: LAYOUT,
-}
 export default class KnowledgeGraph extends React.Component {
   render() {
-    const foo = this.props.match.params.number || 'positioning'
-    const bar = get(CSS_PROPERTIES, foo, [])
+    const category = this.props.match.params.number || 'positioning'
+    const properties = get(CSS_PROPERTIES, category, [])
+
     return (
-      <div>
+      <React.Fragment>
         <Sidebar>
-          <SidebarItem>
-            <StyledLink to="/knowledge-graph/positioning">
-              Positioning
-            </StyledLink>
-          </SidebarItem>
-          <SidebarItem>
-            <StyledLink to="/knowledge-graph/layout">Layout</StyledLink>
-          </SidebarItem>
+          {Object.keys(CSS_PROPERTIES).map(x => (
+            <SidebarItem key={x}>
+              <StyledLink to={`/knowledge-graph/${x}`}>{x}</StyledLink>
+            </SidebarItem>
+          ))}
         </Sidebar>
+
         <Content>
-          <Title>{foo}</Title>
+          <Title>{category}</Title>
           <Wrapper>
-            {bar.map((x, index) => (
+            {properties.map((x, index) => (
               <BlockWrapper key={x.name} bg={COLORS[index % 20]}>
                 <Name>{x.name}</Name>
                 <Values>
@@ -40,7 +35,7 @@ export default class KnowledgeGraph extends React.Component {
             ))}
           </Wrapper>
         </Content>
-      </div>
+      </React.Fragment>
     )
   }
 }
@@ -125,4 +120,5 @@ const StyledLink = styled(Link)`
   display: inline-block;
   padding-right: 20px;
   font-size: 20px;
+  text-transform: capitalize;
 `
