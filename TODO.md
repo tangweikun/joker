@@ -1,6 +1,6 @@
 - [ ] API 接口包装
 - [ ] 完成后端
-- [ ] CSS reset
+- [x] normalize.css
 - [ ] a 设置全局样式
 - [ ] 懒加载
 - [ ] https://hacknical.com/github/tangweikun
@@ -9,13 +9,11 @@
 - [ ] 活跃度
 - [ ] 基本信息
 - [ ] 参与贡献的仓库
-- [ ] styled-component 的兼容性处理
 - [ ] small-moment
 - [ ] 构建发布流程
 - [ ] 选用哪些依赖包？为什么
 - [ ] 生成 PDF
 - [ ] 动画效果抽象出来
-- [ ] normisize css
 - [ ] line-height
 - [ ] em
 - [ ] http://twk-joker.surge.sh/

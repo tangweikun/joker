@@ -1,35 +1,12 @@
 import React, { Component } from 'react'
-import { library } from '@fortawesome/fontawesome-svg-core'
 import styled from 'styled-components'
-import {
-  faChartBar,
-  faAddressCard,
-  faStar,
-  faCodeBranch,
-  faBoxes,
-  faBox,
-  faClock,
-  faInfoCircle,
-  faAward,
-} from '@fortawesome/free-solid-svg-icons'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
-
+import './fontIcon'
 import './App.css'
 import Github from 'routes/github'
 import Rainbow from 'routes/rainbow'
 import KnowledgeGraph from 'routes/knowledge-graph'
 
-library.add(faChartBar)
-library.add(faStar)
-library.add(faAddressCard)
-library.add(faCodeBranch)
-library.add(faBoxes)
-library.add(faBox)
-library.add(faClock)
-library.add(faInfoCircle)
-library.add(faAward)
-
-const About = () => <h2>About</h2>
 const Resume = () => <h2>Resume</h2>
 
 // TODO: 合理配置路由
