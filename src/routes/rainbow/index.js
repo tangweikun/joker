@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import copy from 'copy-to-clipboard'
 import { colors } from 'fake-data/colors'
 import { sleep } from 'utils/sleep'
@@ -44,7 +44,7 @@ export default class Rainbow extends React.Component {
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  padding: 60px;
+  padding: 0 60px;
   background: #f5f5f5;
 `
 
@@ -75,6 +75,18 @@ const BlockWrapper = styled.div`
   }
 `
 
+const animScale = keyframes`
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0) scale3d(0.1, 0.6, 1);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+`
+
 const Message = styled.div`
   position: fixed;
   left: 30px;
@@ -93,4 +105,5 @@ const Message = styled.div`
   display: inline-block;
   vertical-align: middle;
   box-shadow: 0 25px 10px -15px rgba(0, 0, 0, 0.05);
+  animation: 0.25s ${animScale} ease;
 `

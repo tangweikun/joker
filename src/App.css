@@ -1,5 +1,6 @@
 .App {
   overflow: auto;
+  padding-top: 56px;
 }
 
 .App-logo {
