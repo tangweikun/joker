@@ -28,7 +28,7 @@ export default class KnowledgeGraph extends React.Component {
                 <Name>{x.name}</Name>
                 <Values>
                   {x.values.map(value => (
-                    <Value>{value}</Value>
+                    <Value key={value}>{value}</Value>
                   ))}
                 </Values>
               </BlockWrapper>
