@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
 import './fontIcon'
 import './App.css'
 import Github from 'routes/github'
 import Rainbow from 'routes/rainbow'
 import KnowledgeGraph from 'routes/knowledge-graph'
 
-const Resume = () => <h2>Resume</h2>
+const Resume = props => (
+  console.log(props), <h2>{props.match.params.number}</h2>
+)
 
 // TODO: 合理配置路由
 class App extends Component {
@@ -16,17 +18,20 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Nav>
-            <StyledLink to="rainbow">Home</StyledLink>
-            <StyledLink to="github">Github</StyledLink>
-            <StyledLink to="rainbow">Rainbow</StyledLink>
-            <StyledLink to="resume">Resume</StyledLink>
-            <StyledLink to="knowledge-graph">KnowledgeGraph</StyledLink>
+            <StyledLink to="/knowledge-graph">Home</StyledLink>
+            <StyledLink to="/github">Github</StyledLink>
+            <StyledLink to="/rainbow">Rainbow</StyledLink>
+            <StyledLink to="/resume">Resume</StyledLink>
+            <StyledLink to="/knowledge-graph">KnowledgeGraph</StyledLink>
           </Nav>
-          <Route path="/" exact component={Rainbow} />
-          <Route path="/knowledge-graph" component={KnowledgeGraph} />
-          <Route path="/rainbow" component={Rainbow} />
-          <Route path="/github" component={Github} />
-          <Route path="/resume" component={Resume} />
+          <Switch>
+            <Route path="/" exact component={Rainbow} />
+            <Route path="/knowledge-graph" exact component={KnowledgeGraph} />
+            <Route path="/knowledge-graph/:number" component={KnowledgeGraph} />
+            <Route path="/rainbow" component={Rainbow} />
+            <Route path="/github" component={Github} />
+            <Route path="/resume" component={Resume} />
+          </Switch>
         </div>
       </BrowserRouter>
     )
