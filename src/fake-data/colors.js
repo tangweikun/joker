@@ -1,4 +1,4 @@
-export const colors = Array.from(
+export const COLORS = Array.from(
   new Set([
     '#DB7094',
     '#9134DC',

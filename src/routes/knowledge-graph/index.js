@@ -1,17 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
+import get from 'lodash/get'
+import { Link } from 'react-router-dom'
 import { POSITIONING, LAYOUT } from 'fake-data/css-properties'
-import { colors } from 'fake-data/colors'
+import { COLORS } from 'fake-data/colors'
 
 const CSS_PROPERTIES = {
   positioning: POSITIONING,
   layout: LAYOUT,
 }
-
 export default class KnowledgeGraph extends React.Component {
   render() {
     const foo = this.props.match.params.number || 'positioning'
+    const bar = get(CSS_PROPERTIES, foo, [])
     return (
       <div>
         <Sidebar>
@@ -27,8 +28,8 @@ export default class KnowledgeGraph extends React.Component {
         <Content>
           <Title>{foo}</Title>
           <Wrapper>
-            {CSS_PROPERTIES[foo].map((x, index) => (
-              <BlockWrapper key={x.name} bg={colors[index % 20]}>
+            {bar.map((x, index) => (
+              <BlockWrapper key={x.name} bg={COLORS[index % 20]}>
                 <Name>{x.name}</Name>
                 <Values>
                   {x.values.map(value => (
@@ -47,7 +48,6 @@ export default class KnowledgeGraph extends React.Component {
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  /* background: #f5f5f5; */
 `
 
 const Name = styled.div`
@@ -70,10 +70,6 @@ const Value = styled.span`
   &:not(:last-child)::after {
     content: ' | ';
   }
-`
-
-const Block = styled.div`
-  margin-top: 14px;
 `
 
 const BlockWrapper = styled.div`

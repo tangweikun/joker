@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import copy from 'copy-to-clipboard'
-import { colors } from 'fake-data/colors'
+import { COLORS } from 'fake-data/colors'
 import { sleep } from 'utils/sleep'
 
 export default class Rainbow extends React.Component {
@@ -20,7 +20,7 @@ export default class Rainbow extends React.Component {
           } copied to the clipboard 😁`}</Message>
         ))}
 
-        {colors.map(color => (
+        {COLORS.map(color => (
           <BlockWrapper bg={color} key={color}>
             <Block
               onClick={async () => {
