@@ -118,7 +118,12 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: #556272;
   display: inline-block;
-  padding-right: 20px;
+  padding: 4px 8px;
   font-size: 20px;
   text-transform: capitalize;
+  border-radius: 4px;
+
+  :hover {
+    background: rgba(20, 20, 20, 0.1);
+  }
 `

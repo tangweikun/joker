@@ -26,6 +26,8 @@
 - [ ] Use JSONP
 - [ ] Mock
 - [ ] 异步事件处理
+- [ ] 使用 badge
 
 - [ ] https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model
 - [ ] https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioning
+- [ ] https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Backgrounds_and_Borders
