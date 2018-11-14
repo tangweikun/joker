@@ -6,10 +6,7 @@ import './App.css'
 import Github from 'routes/github'
 import Rainbow from 'routes/rainbow'
 import KnowledgeGraph from 'routes/knowledge-graph'
-
-const Resume = props => (
-  console.log(props), <h2>{props.match.params.number}</h2>
-)
+import Resume from 'routes/resume'
 
 // TODO: 合理配置路由
 class App extends Component {
